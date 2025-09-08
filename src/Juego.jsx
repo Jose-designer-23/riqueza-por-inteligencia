@@ -35,6 +35,8 @@ const Juego = ({musicaFondoRef}) => {
 
     const [comodinAleatorioUsado, setComodinAleatorioUsado] = useState(false);
 
+    const [musicaSonando, setMusicaSonando] = useState(false);
+
     const musicaAciertoRef = useRef(null);
 
     const musicaFalloRef = useRef(null);
@@ -46,6 +48,10 @@ const Juego = ({musicaFondoRef}) => {
         musicaFalloRef.current = new Audio("/sounds/fallo.mp3");
         celebracionRef.current = new Audio("/sounds/celebracion.mp3");
         musicaFalloRef.current.volume = 1.0;
+
+        if (musicaFondoRef.current && !musicaFondoRef.current.paused) {
+            setMusicaSonando(true);
+        }
     
     }, []);
 
@@ -92,6 +98,7 @@ const Juego = ({musicaFondoRef}) => {
             musicaFalloRef.current.play();
             musicaFalloRef.current.volume = 1.0;
             musicaFondoRef.current.pause();
+            setMusicaSonando(false);
         }
 
         setTimeout(() => {
@@ -110,7 +117,10 @@ const Juego = ({musicaFondoRef}) => {
                     // Si es la última pregunta y aciertas, mostramos el modal de haber ganado la partida.
                     celebracionRef.current.play();
                     celebracionRef.current.loop = true;
-                    musicaFondoRef.current.pause();
+                    if (musicaFondoRef.current) {
+                        musicaFondoRef.current.pause();
+                        setMusicaSonando(false);
+                    }
                     setMostrarModal(true);
                 }
             } else {
@@ -118,6 +128,20 @@ const Juego = ({musicaFondoRef}) => {
                 setMostrarModal(true);
             }
         }, 1000);
+    };
+
+    const toggleMusica = () => {
+        if (musicaFondoRef.current) {
+            if (musicaSonando) {
+                musicaFondoRef.current.pause();
+                setMusicaSonando(false);
+            } else {
+                musicaFondoRef.current.play().catch(error => {
+                    console.error("Error al reproducir la música de fondo:", error);
+                });
+                setMusicaSonando(true);
+            }
+        }
     };
 
 
@@ -167,6 +191,20 @@ const Juego = ({musicaFondoRef}) => {
     return (
 
         <div className="flex flex-col h-full sm:overflow-y-hidden overflow-y-auto">
+            <button onClick={toggleMusica} className="absolute top-4 right-4 z-50 text-white p-2 rounded-full bg-black bg-opacity-50">
+                {musicaSonando ? (
+                    // Icono de sonido
+                    <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" viewBox="0 0 20 20" fill="currentColor">
+                        <path fillRule="evenodd" d="M9.383 3.076A1 1 0 0110 4v12a1 1 0 01-1.707.707L4.586 13H2a1 1 0 01-1-1V8a1 1 0 011-1h2.586l3.707-3.707a1 1 0 011.09-.217zM14.657 5.05a1 1 0 01.782 0A10.001 10.001 0 0118 10a10.001 10.001 0 01-2.561 4.95a1 1 0 01-1.34-1.503A8.001 8.001 0 0016 10a8.001 8.001 0 00-1.879-4.507 1 1 0 01-.157-1.443z" clipRule="evenodd" />
+                    </svg>
+                ) : (
+                    // Icono de sonido silenciado
+                    <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" viewBox="0 0 20 20" fill="currentColor">
+                        <path fillRule="evenodd" d="M9.383 3.076A1 1 0 0110 4v12a1 1 0 01-1.707.707L4.586 13H2a1 1 0 01-1-1V8a1 1 0 011-1h2.586l3.707-3.707a1 1 0 011.09-.217z" clipRule="evenodd" />
+                        <path stroke="#fff" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 8l-6 6M9 8l6 6" />
+                    </svg>
+                )}
+            </button>
             <div className="estructura_dinero">
                 <div className="fondo_dinero borde_dinero">
                     <p className="texto_dinero">Dinero acumulado: {dineroAcumulado.toLocaleString()}€</p>

@@ -1,18 +1,7 @@
 import { Link } from 'react-router-dom';
 import './App.css';
 
-const Inicio = ({musicaFondoRef}) => {
-
-  const handleStartGame = () => {
-    if(!musicaFondoRef.current){
-      musicaFondoRef.current = new Audio("/sounds/Floating-Lanterns-The-Mini-Vandals.mp3");
-      musicaFondoRef.current.loop = true;
-    }
-
-    musicaFondoRef.current.play().catch(error => {
-      console.error("Error al reproducir la música de fondo:", error);
-    })
-  }
+const Inicio = ({playMusic}) => {
 
   return (
 
@@ -31,7 +20,7 @@ const Inicio = ({musicaFondoRef}) => {
           <Link 
             to="/juego" 
             className="bg-[#f3f1f1] boton_link"
-            onClick={handleStartGame}
+            onClick={playMusic}
           >
             Empezar a Jugar
           </Link>
