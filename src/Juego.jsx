@@ -166,7 +166,7 @@ const Juego = ({musicaFondoRef}) => {
 
     return (
 
-        <div className="caja_dinero">
+        <div className="flex flex-col h-full sm:overflow-y-hidden overflow-y-auto border 8 border-violet-500">
             <div className="estructura_dinero">
                 <div className="fondo_dinero borde_dinero">
                     <p className="texto_dinero">Dinero acumulado: {dineroAcumulado.toLocaleString()}€</p>
@@ -196,7 +196,7 @@ const Juego = ({musicaFondoRef}) => {
       
             
 
-            <div className="caja_pregunta">
+            <div className="flex flex-col h-full sm:overflow-y-hidden overflow-y-auto">
                 <div className="estructura_pregunta fondo_pregunta">
                     <h1 className="espacio_pregunta font-bold sm:text-4xl md:text-4xl text-3xl">Riqueza por Inteligencia</h1>
                     <p className="text-xl font-bold">Pregunta {preguntaActual + 1}:</p>
