@@ -7,8 +7,6 @@
   text-align: center;
 }
 
-
-
 @media (prefers-reduced-motion: no-preference) {
   a:nth-of-type(2) .logo {
     animation: logo-spin infinite 20s linear;
@@ -23,83 +21,79 @@
   color: #888;
 }
 
-
 /* Estructura para el div del dinero */
-.caja_dinero{
-  @apply w-full max-w-md sm:max-w-xl mx-auto p-2 sm:p-4  relative overflow-x-hidden;
+.caja_dinero {
+  @apply w-full max-w-md sm:max-w-xl mx-auto p-2 sm:p-4 relative;
 }
 
-.estructura_dinero{
+.estructura_dinero {
   @apply flex flex-col sm:flex-row items-center justify-between gap-2 mb-4;
 }
 
-.fondo_dinero{
-   @apply  bg-[#f1f0dc] backdrop-blur-md rounded-xl p-4 shadow-xl;
+.fondo_dinero {
+  @apply bg-[#f1f0dc] backdrop-blur-md rounded-xl p-4 shadow-xl;
 }
 
-.borde_dinero{
-  @apply border-4 border-violet-600 p-4 rounded-lg ml-8;
+.borde_dinero {
+  @apply border-4 border-violet-600 p-4 rounded-lg;
 }
 
-.texto_dinero{
+.texto_dinero {
   @apply text-lg font-bold;
 }
 
 /* Estructura para los comodines */
-
-.caja_comodines{
-  @apply flex flex-col gap-2 border-4 border-violet-600 mr-8;
+.caja_comodines {
+  @apply flex flex-col gap-2 border-4 border-violet-600;
 }
 
-.texto_comodines{
+.texto_comodines {
   @apply font-bold;
 }
 
-.separacion_comodines{
+.separacion_comodines {
   @apply flex gap-2;
 }
 
-.estilo_comodines{
+.estilo_comodines {
   @apply py-2 px-4 rounded-lg font-bold text-sm sm:text-base transition-colors duration-300;
 }
 
 /* Estructura para el div de las preguntas */
-
-.caja_pregunta{
-  @apply sm:max-w-7xl max-w-xl mx-auto p-8 text-center;
-  
-}
-.estructura_pregunta{
-  @apply  border-8 border-violet-600 p-4 rounded-lg max-w-lg mx-auto mt-10 text-center;
+.caja_pregunta {
+  @apply w-full max-w-xl mx-auto p-8 text-center;
 }
 
-.fondo_pregunta{
-  @apply  bg-[#f1f0dc] backdrop-blur-md rounded-xl p-8 shadow-xl;
+.estructura_pregunta {
+  @apply border-8 border-violet-600 p-4 rounded-lg w-full max-w-lg mx-auto mt-10 text-center;
 }
 
-.texto_titulo{
+.fondo_pregunta {
+  @apply bg-[#f1f0dc] backdrop-blur-md rounded-xl p-8 shadow-xl;
+}
+
+.texto_titulo {
   @apply font-bold sm:text-4xl md:text-4xl text-3xl;
 }
 
-.texto_numero_pregunta{
+.texto_numero_pregunta {
   @apply text-xl font-bold;
 }
 
-.texto_pregunta{
+.texto_pregunta {
   @apply font-bold text-lg;
 }
 
-.espacio_pregunta{
+.espacio_pregunta {
   @apply pb-4;
 }
 
 /* Estructura para los botones */
-
-.estructura_botones{
+.estructura_botones {
   @apply flex flex-wrap justify-center gap-4;
 }
 
-.diseño_botones{
+.diseño_botones {
   @apply w-full sm:w-40 py-4 text-center rounded-lg font-bold transition-colors duration-300;
 }
 
@@ -109,8 +103,8 @@ button {
   @apply active:translate-y-1 active:shadow-sm;
 }
 
-.boton_link{
-  @apply  text-gray-800 p-2 rounded-md m-1 shadow-md shadow-black font-semibold;
+.boton_link {
+  @apply text-gray-800 p-2 rounded-md m-1 shadow-md shadow-black font-semibold;
   @apply border-2 border-transparent hover:border-black transition-colors duration-300;
   @apply no-underline;
   @apply p-3 rounded-lg text-xl;
@@ -118,28 +112,28 @@ button {
 }
 
 /* Botones para los comodines */
-.boton_habilitado{
-  @apply bg-gray-50  ;
+.boton_habilitado {
+  @apply bg-gray-50;
 }
 
-.boton_deshabilitado{
+.boton_deshabilitado {
   @apply bg-gray-400 cursor-not-allowed;
 }
 
 /* Botones para las preguntas acertadas y incorrectas */
-
 .correcta2 {
   @apply bg-green-700 text-white;
 }
+
 .incorrecta2 {
   @apply bg-red-700 text-white;
 }
 
 /* Estructura para los modales */
-.caja_modal{
+.caja_modal {
   @apply fixed inset-0 bg-violet-900 flex items-center justify-center p-4;
 }
 
-.estructura_modal{
+.estructura_modal {
   @apply bg-white rounded-xl shadow-lg p-8 text-center max-w-sm w-full;
 }
