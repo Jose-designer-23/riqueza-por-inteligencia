@@ -247,7 +247,7 @@ const Juego = ({musicaFondoRef}) => {
                         ) : (
                             <>
                                 <img 
-                                    src="../public/imgs/confetti-40.gif" 
+                                    src="/imgs/confetti-40.gif" 
                                     alt="Confeti de celebración" 
                                     className="absolute inset-0 w-full h-full object-cover z-0 pointer-events-none"
                                     />
