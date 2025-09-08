@@ -166,7 +166,7 @@ const Juego = ({musicaFondoRef}) => {
 
     return (
 
-        <div className="flex flex-col h-full sm:overflow-y-hidden overflow-y-auto border 8 border-violet-500">
+        <div className="flex flex-col h-full sm:overflow-y-hidden overflow-y-auto">
             <div className="estructura_dinero">
                 <div className="fondo_dinero borde_dinero">
                     <p className="texto_dinero">Dinero acumulado: {dineroAcumulado.toLocaleString()}€</p>

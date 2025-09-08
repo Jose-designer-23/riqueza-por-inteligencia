@@ -143,3 +143,8 @@ button {
 .estructura_modal{
   @apply bg-white rounded-xl shadow-lg p-8 text-center max-w-sm w-full;
 }
+
+/* Estructura inicio */
+.caja_inicio{
+  @apply h-full overflow-y-auto sm:overflow-y-hidden;
+}
