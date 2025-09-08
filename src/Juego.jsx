@@ -42,9 +42,9 @@ const Juego = ({musicaFondoRef}) => {
     const celebracionRef = useRef(null);
 
     useEffect(() => {
-        musicaAciertoRef.current = new Audio("../public/sounds/acierto.mp3");
-        musicaFalloRef.current = new Audio("../public/sounds/fallo.mp3");
-        celebracionRef.current = new Audio("../public/sounds/celebracion.mp3");
+        musicaAciertoRef.current = new Audio("/sounds/acierto.mp3");
+        musicaFalloRef.current = new Audio("/sounds/fallo.mp3");
+        celebracionRef.current = new Audio("/sounds/celebracion.mp3");
         musicaFalloRef.current.volume = 1.0;
     
     }, []);

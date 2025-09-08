@@ -5,7 +5,7 @@ const Inicio = ({musicaFondoRef}) => {
 
   const handleStartGame = () => {
     if(!musicaFondoRef.current){
-      musicaFondoRef.current = new Audio("../public/sounds/Floating-Lanterns-The-Mini-Vandals.mp3");
+      musicaFondoRef.current = new Audio("/sounds/Floating-Lanterns-The-Mini-Vandals.mp3");
       musicaFondoRef.current.loop = true;
     }
 
