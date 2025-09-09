@@ -1,7 +1,18 @@
 import { Link } from 'react-router-dom';
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import './App.css';
 
 const Inicio = ({playMusic}) => {
+
+  const [mostrarModal, setMostrarModal] = useState(false);
+    const navigate = useNavigate();
+
+    const handleStartGame = (categoria) => {
+        setMostrarModal(false);
+        playMusic();
+        navigate('/juego', { state: { categoria } });
+    };
 
   return (
 
@@ -17,13 +28,12 @@ const Inicio = ({playMusic}) => {
             <p className="p-2 text-justify text-md sm:text-lg"><span className="font-bold">50%:</span> Este comodín te eliminará 2 respuestas incorrectas de la pregunta. </p>
             <p className="p-2 text-justify text-md sm:text-lg"><span className="font-bold">Aleatorio:</span> Este comodín eliminara al azar entre 1 y 3 respuestas incorrectas. </p>
 
-          <Link 
-            to="/juego" 
+          <button
+            onClick={() => setMostrarModal(true)}
             className="bg-[#f3f1f1] boton_link"
-            onClick={playMusic}
           >
             Empezar a Jugar
-          </Link>
+          </button>
 
           <div className="text-xs mt-3 max-w-sm">
               Música de fondo de <a className="underline" href="https://www.bensound.com" target="_blank" rel="noreferrer">Bensound</a><br/>
@@ -32,7 +42,47 @@ const Inicio = ({playMusic}) => {
           </div>
 
         </div>
+
+
+      {mostrarModal && (
+                <div className="fixed inset-0 bg-violet-900 bg-opacity-80 flex items-center justify-center p-4 z-50">
+                    <div className="bg-white rounded-xl shadow-lg p-8 text-center max-w-sm w-full">
+                        <h2 className="text-2xl font-bold mb-6">Elige la temática de las preguntas</h2>
+                        <div className="flex flex-col gap-4">
+                            <button
+                                onClick={() => handleStartGame('ocio')}
+                                className="bg-purple-600 text-white py-3 px-6 rounded-lg font-bold text-lg hover:bg-purple-700 transition-colors"
+                            >
+                                Ocio
+                            </button>
+                            <button
+                                onClick={() => handleStartGame('culturaGeneral')}
+                                className="bg-purple-600 text-white py-3 px-6 rounded-lg font-bold text-lg hover:bg-purple-700 transition-colors"
+                            >
+                                Cultura General
+                            </button>
+                            <button
+                                onClick={() => handleStartGame('deportes')}
+                                className="bg-purple-600 text-white py-3 px-6 rounded-lg font-bold text-lg hover:bg-purple-700 transition-colors"
+                            >
+                                Deportes
+                            </button>
+                        </div>
+                        <button
+                            onClick={() => setMostrarModal(false)}
+                            className="mt-4 text-gray-500 hover:text-gray-700 font-semibold"
+                        >
+                            Volver
+                        </button>
+                    </div>
+                </div>
+            )}
+
+
       </div>
+
+      
+            
   
     
   );

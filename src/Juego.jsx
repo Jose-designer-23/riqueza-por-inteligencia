@@ -1,6 +1,6 @@
 import './App.css';
 import { useState, useEffect, useRef } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import preguntas from './data/preguntas';
 
 
@@ -15,9 +15,7 @@ const mezclarPreguntas = (array) => {
     return copia;
 }
 
-const Juego = ({musicaFondoRef}) => {
-
-    const navigate = useNavigate();
+const Juego = ({musicaFondoRef, stopMusic}) => {
     
     const [preguntaActual, setPreguntaActual] = useState(0);
 
@@ -37,11 +35,19 @@ const Juego = ({musicaFondoRef}) => {
 
     const [musicaSonando, setMusicaSonando] = useState(false);
 
+    const [ganaste, setGanaste] = useState(false);
+
     const musicaAciertoRef = useRef(null);
 
     const musicaFalloRef = useRef(null);
 
     const celebracionRef = useRef(null);
+
+    const navigate = useNavigate();
+
+    const location = useLocation();
+
+    const categoria = location.state?.categoria || 'ocio';
 
     useEffect(() => {
         musicaAciertoRef.current = new Audio("/sounds/acierto.mp3");
@@ -76,9 +82,14 @@ const Juego = ({musicaFondoRef}) => {
 
 
     //Usamos useEffect al inicio para barajar las preguntas
-    useEffect(() => {
-        setPreguntasBarajadas(mezclarPreguntas(preguntas));
-    }, []);
+   useEffect(() => {
+        if (preguntas[categoria]) {
+            setPreguntasBarajadas(mezclarPreguntas(preguntas[categoria]));
+        } else {
+            console.error(`La categoría "${categoria}" no existe.`);
+            navigate('/');
+        }
+    }, [categoria, navigate]);
 
     //Esperamos a que las preguntas se barajen antes de renderizar
     if (preguntasBarajadas.length === 0) {
@@ -121,10 +132,12 @@ const Juego = ({musicaFondoRef}) => {
                         musicaFondoRef.current.pause();
                         setMusicaSonando(false);
                     }
+                    setGanaste(false);
                     setMostrarModal(true);
                 }
             } else {
                 // Si la respuesta es incorrecta, mostramos el modal de haber perdido la partida.
+                setGanaste(true);
                 setMostrarModal(true);
             }
         }, 1000);
@@ -175,15 +188,17 @@ const Juego = ({musicaFondoRef}) => {
         setPreguntaActual(0);
         setRespuestaSeleccionada(null);
         setDineroAcumulado(0);
-        setPreguntasBarajadas(mezclarPreguntas(preguntas));
+        setPreguntasBarajadas(mezclarPreguntas(preguntas[categoria]));
         setMostrarModal(false);
         setRespuestasDeshabilitadas([]);
         setComodin5050Usado(false);
         setComodinAleatorioUsado(false);
+        setGanaste(false);
          if (musicaFondoRef.current) {
             musicaFondoRef.current.play();
             celebracionRef.current.pause();
         }
+        stopMusic();
         navigate('/');
   
     };
@@ -267,7 +282,7 @@ const Juego = ({musicaFondoRef}) => {
             {mostrarModal && (
                 <div className="fixed inset-0 bg-violet-900 bg-opacity-80 flex items-center justify-center p-4">
                     <div className="bg-white rounded-xl shadow-lg p-8 text-center max-w-sm w-full">
-                        {pregunta.respuesta[respuestaSeleccionada]?.correcta === false ? (
+                        {ganaste ? (
                             <>
                                 <h2 className="text-3xl font-bold text-gray-900 mb-4">¡Qué pena, ibas bastante bien!</h2>
                                 <p className="text-xl text-gray-700 mb-6">

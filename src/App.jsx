@@ -29,11 +29,18 @@ function App() {
         }
     };
 
+    const stopMusic = () => {
+        if (musicaFondoRef.current) {
+            musicaFondoRef.current.pause();
+            musicaFondoRef.current.currentTime = 0;
+        }
+    };
+
   return (
     <Router>
       <Routes>
         <Route path="/" element={<Inicio playMusic={playMusic} />} />
-        <Route path="/juego" element={<Juego musicaFondoRef={musicaFondoRef} />} />
+        <Route path="/juego" element={<Juego musicaFondoRef={musicaFondoRef} stopMusic = {stopMusic} />} />
       </Routes>
     </Router>
   );
