@@ -20,8 +20,12 @@ const Inicio = ({playMusic}) => {
 
         <div className=" bg-[#f1f0dc] rounded-xl shadow-xl p-2 border-8 border-violet-600  flex flex-col items-center justify-center text-center ">
           <h1 className="sm:text-4xl text-2xl font-bold mb-4">Riqueza por Inteligencia</h1>
-          <p className="sm:text-lg text-md mb-6 text-justify font-semibold p-2">¿Serás capaz de llegar a la pregunta 15 y llevarte un millón de euros? El juego consta de 15 preguntas, 
-            cada vez que aciertes pasas a la siguiente pregunta, si fallas se termina el juego y perderás todo el dinero acumulado. </p>
+          <p className="sm:text-lg text-md mb-6 sm:text-center text-justify font-semibold p-2"><b className="font-bold">¿Serás capaz de llegar a la pregunta 15 y llevarte un millón de euros?</b>
+            <span className="block"></span>
+            <span className="sm:block"></span>
+             El juego consta de 15 preguntas, cada vez que aciertes pasas a la siguiente
+            <span className="sm:block"></span>
+             pregunta, si fallas se termina el juego y perderás todo el dinero acumulado. </p>
 
             <p className="font-bold text-center text-xl sm:text-2xl mb-2">Comodines: </p>
             <p className="font-semibold p-2 text-justify text-md sm:text-lg">En el juego hay 2 comodines que podrás usar una vez por partida.</p>
