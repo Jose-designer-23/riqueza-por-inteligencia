@@ -1,5 +1,5 @@
 export default {
-    ocio: [
+    entretenimiento: [
         {
             "pregunta": "¿En qué época histórica se desarrolla la historia de Ezio Auditore?",
             "respuesta": [
@@ -118,7 +118,7 @@ export default {
             ]
         },
         {
-            "pregunta": "¿Con qué restauran el adn de los dinosaurios en la película 'Parque Jurásico'?",
+            "pregunta": "¿Con qué restauran el ADN de los dinosaurios en la película 'Parque Jurásico'?",
             "respuesta": [
                 { "texto": "Con sangre de mosquito fosilizado en ámbar", "correcta": true },
                 { "texto": "Con sangre de dinosaurio fosilizado en ámbar", "correcta": false },

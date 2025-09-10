@@ -20,7 +20,7 @@ const Inicio = ({playMusic}) => {
 
         <div className=" bg-[#f1f0dc] rounded-xl shadow-xl p-2 border-8 border-violet-600  flex flex-col items-center justify-center text-center ">
           <h1 className="sm:text-4xl text-2xl font-bold mb-4">Riqueza por Inteligencia</h1>
-          <p className="sm:text-lg text-md mb-6 text-justify font-semibold p-2">Serás capaz de llegar a la pregunta 15 y llevarte un millón de euros? El juego consta de 15 preguntas, 
+          <p className="sm:text-lg text-md mb-6 text-justify font-semibold p-2">¿Serás capaz de llegar a la pregunta 15 y llevarte un millón de euros? El juego consta de 15 preguntas, 
             cada vez que aciertes pasas a la siguiente pregunta, si fallas se termina el juego y perderás todo el dinero acumulado. </p>
 
             <p className="font-bold text-center text-xl sm:text-2xl mb-2">Comodines: </p>
@@ -50,10 +50,10 @@ const Inicio = ({playMusic}) => {
                         <h2 className="text-2xl font-bold mb-6">Elige la temática de las preguntas</h2>
                         <div className="flex flex-col gap-4">
                             <button
-                                onClick={() => handleStartGame('ocio')}
+                                onClick={() => handleStartGame('entretenimiento')}
                                 className="bg-purple-600 text-white py-3 px-6 rounded-lg font-bold text-lg hover:bg-purple-700 transition-colors"
                             >
-                                Ocio
+                                Entretenimiento
                             </button>
                             <button
                                 onClick={() => handleStartGame('culturaGeneral')}

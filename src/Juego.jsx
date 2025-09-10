@@ -47,7 +47,7 @@ const Juego = ({musicaFondoRef, stopMusic}) => {
 
     const location = useLocation();
 
-    const categoria = location.state?.categoria || 'ocio';
+    const categoria = location.state?.categoria || 'entretenimiento';
 
     useEffect(() => {
         musicaAciertoRef.current = new Audio("/sounds/acierto.mp3");
