@@ -308,7 +308,7 @@ const Juego = ({musicaFondoRef, stopMusic}) => {
                                 <div className="relative z-10">
                                     <h2 className="text-3xl font-bold text-gray-900 mb-4 ">¡Enhorabuena! Tu inteligencia te hizo amasar una gran riqueza. </h2>
                                     <p className="text-xl text-gray-700 mb-6">
-                                        Conseguiste ganar un: <span className="font-extrabold text-purple-600">{dineroAcumulado.toLocaleString()}€</span>
+                                        Conseguiste ganar: <span className="font-extrabold text-purple-600">{dineroAcumulado.toLocaleString()}€</span>
                                     </p>
                                     <button
                                         onClick={reiniciarJuego}
