@@ -16,65 +16,65 @@ const Inicio = ({playMusic}) => {
 
   return (
 
-      <div className="caja_inicio lg:max-w-4xl mx-auto">
+      <div className="caja_inicio">
 
-        <div className=" bg-[#f1f0dc] rounded-xl shadow-xl p-2 border-8 border-violet-600  flex flex-col items-center justify-center text-center ">
-          <h1 className="sm:text-4xl text-2xl font-bold mb-4">Riqueza por Inteligencia</h1>
-          <p className="sm:text-lg text-md mb-6 sm:text-center text-justify font-semibold p-2"><b className="font-bold">¿Serás capaz de llegar a la pregunta 15 y llevarte un millón de euros?</b>
-            <span className="block"></span>
-            <span className="sm:block"></span>
+        <div className="estructura_inicio">
+          <h1 className="titulo_inicio">Riqueza por Inteligencia</h1>
+          <p className="estructura_argumento text-md"><b className="negrita">¿Serás capaz de llegar a la pregunta 15 y llevarte un millón de euros?</b>
+            <span className="espacio_pantalla_pequeña"></span>
+            <span className="espacio_pantalla_grande"></span>
              El juego consta de 15 preguntas, cada vez que aciertes pasas a la siguiente
-            <span className="sm:block"></span>
+            <span className="espacio_pantalla_grande"></span>
              pregunta, si fallas se termina el juego y perderás todo el dinero acumulado. </p>
 
-            <p className="font-bold text-center text-xl sm:text-2xl mb-2">Comodines: </p>
-            <p className="font-semibold p-2 text-justify text-md sm:text-lg">En el juego hay 2 comodines que podrás usar una vez por partida.</p>
-            <p className="p-2 text-justify text-md sm:text-lg"><span className="font-bold">50%:</span> Este comodín te eliminará 2 respuestas incorrectas de la pregunta. </p>
-            <p className="p-2 text-justify text-md sm:text-lg"><span className="font-bold">Aleatorio:</span> Este comodín eliminara al azar entre 1 y 3 respuestas incorrectas. </p>
+            <p className="titulo_comodines_inicio">Comodines: </p>
+            <p className="explicacion_comodines text-md">En el juego hay 2 comodines que podrás usar una vez por partida.</p>
+            <p className="argumento_comodines text-md"><span className="negrita">50%:</span> Este comodín te eliminará 2 respuestas incorrectas de la pregunta. </p>
+            <p className="argumento_comodines text-md"><span className="negrita">Aleatorio:</span> Este comodín eliminara al azar entre 1 y 3 respuestas incorrectas. </p>
 
           <button
             onClick={() => setMostrarModal(true)}
-            className="bg-[#f3f1f1] boton_link"
+            className="fondo_boton_ininio boton_link"
           >
             Empezar a Jugar
           </button>
 
-          <div className="text-xs mt-3 max-w-sm">
-              Música de fondo de <a className="underline" href="https://www.bensound.com" target="_blank" rel="noreferrer">Bensound</a><br/>
-              Sonido de acierto y fallo de <a className="underline" href="https://www.zapsplat.com" target="_blank" rel="noreferrer">Zapsplat</a><br/>
-              Sonido de celebracion de <a  className="underline" href="https://pixabay.com/es/users/hot_dope-27442149/?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=111355"> Dmitrii</a> en <a  className="underline" href="https://pixabay.com/music//?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=111355">Pixabay</a>
+          <div className="estructura_contribuciones">
+              Música de fondo de <a className="linea_enlace" href="https://www.bensound.com" target="_blank" rel="noreferrer">Bensound</a><br/>
+              Sonido de acierto y fallo de <a className="linea_enlace" href="https://www.zapsplat.com" target="_blank" rel="noreferrer">Zapsplat</a><br/>
+              Sonido de celebracion de <a  className="linea_enlace" href="https://pixabay.com/es/users/hot_dope-27442149/?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=111355"> Dmitrii</a> en <a  className="linea_enlace" href="https://pixabay.com/music//?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=111355">Pixabay</a>
           </div>
 
         </div>
 
 
       {mostrarModal && (
-                <div className="fixed inset-0 bg-violet-900 bg-opacity-80 flex items-center justify-center p-4 z-50">
-                    <div className="bg-white rounded-xl shadow-lg p-8 text-center max-w-sm w-full">
-                        <h2 className="text-2xl font-bold mb-6">Elige la temática de las preguntas</h2>
-                        <div className="flex flex-col gap-4">
+                <div className="caja_modal_categoria bg-opacity-80">
+                    <div className="estructura_modal_categoria">
+                        <h2 className="titulo_modal_categoria">Elige la temática de las preguntas</h2>
+                        <div className="estructura_seleccion_categoria">
                             <button
                                 onClick={() => handleStartGame('entretenimiento')}
-                                className="bg-purple-600 text-white py-3 px-6 rounded-lg font-bold text-lg hover:bg-purple-700 transition-colors"
+                                className="estilo_botones_categoria"
                             >
                                 Entretenimiento
                             </button>
                             <button
                                 onClick={() => handleStartGame('culturaGeneral')}
-                                className="bg-purple-600 text-white py-3 px-6 rounded-lg font-bold text-lg hover:bg-purple-700 transition-colors"
+                                className="estilo_botones_categoria"
                             >
                                 Cultura General
                             </button>
                             <button
                                 onClick={() => handleStartGame('deportes')}
-                                className="bg-purple-600 text-white py-3 px-6 rounded-lg font-bold text-lg hover:bg-purple-700 transition-colors"
+                                className="estilo_botones_categoria"
                             >
                                 Deportes
                             </button>
                         </div>
                         <button
                             onClick={() => setMostrarModal(false)}
-                            className="mt-4 text-gray-500 hover:text-gray-700 font-semibold"
+                            className="volver_inicio"
                         >
                             Volver
                         </button>

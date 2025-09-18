@@ -205,8 +205,8 @@ const Juego = ({musicaFondoRef, stopMusic}) => {
 
     return (
 
-        <div className="flex flex-col h-full sm:overflow-y-hidden overflow-y-auto">
-            <button onClick={toggleMusica} className="absolute top-4 right-4 z-50 text-white p-2 rounded-full bg-black bg-opacity-50">
+        <div className="estructura_boton_musica">
+            <button onClick={toggleMusica} className="estilo_boton_musica bg-opacity-50">
                 {musicaSonando ? (
                     // Icono de sonido
                     <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" viewBox="0 0 20 20" fill="currentColor">
@@ -225,7 +225,7 @@ const Juego = ({musicaFondoRef, stopMusic}) => {
                     <p className="texto_dinero">Dinero acumulado: {dineroAcumulado.toLocaleString()}€</p>
                 </div>
                 
-                {/* Botones de comodines */}
+               
                 <div className="fondo_dinero caja_comodines">
                   <p className="texto_comodines">Comodines:</p>
                   <div className="separacion_comodines">
@@ -249,18 +249,18 @@ const Juego = ({musicaFondoRef, stopMusic}) => {
       
             
 
-            <div className="flex flex-col h-full sm:overflow-y-hidden overflow-y-auto">
+            <div className="caja_pregunta">
                 <div className="estructura_pregunta fondo_pregunta">
-                    <h1 className="espacio_pregunta font-bold sm:text-4xl md:text-4xl text-3xl">Riqueza por Inteligencia</h1>
-                    <p className="text-xl font-bold">Pregunta {preguntaActual + 1}:</p>
-                    <p className="espacio_pregunta font-bold text-lg">{pregunta.pregunta}</p>
-                    <div className="flex flex-wrap justify-center gap-4">
+                    <h1 className="espacio_pregunta texto_titulo">Riqueza por Inteligencia</h1>
+                    <p className="texto_numero_pregunta">Pregunta {preguntaActual + 1}:</p>
+                    <p className="espacio_pregunta texto_pregunta">{pregunta.pregunta}</p>
+                    <div className="estructura_botones">
                         {pregunta.respuesta.map((respuesta, index) => (
                             <button
                                 key={index}
                                 onClick={() => respuestaPulsada(respuesta.correcta, index)}
                                 className={
-                                    `w-full sm:w-40 py-4 text-center rounded-lg font-bold transition-colors duration-300
+                                    `diseño_botones
                                     ${respuestaSeleccionada === index
                                         ? (respuesta.correcta ? 'correcta2' : 'incorrecta2')
                                         : respuestasDeshabilitadas.includes(index)
@@ -280,18 +280,18 @@ const Juego = ({musicaFondoRef, stopMusic}) => {
             
 
             {mostrarModal && (
-                <div className="fixed inset-0 bg-violet-900 bg-opacity-80 flex items-center justify-center p-4">
-                    <div className="bg-white rounded-xl shadow-lg p-8 text-center max-w-sm w-full">
+                <div className="caja_modal bg-opacity-80">
+                    <div className="estructura_modal">
                         {ganaste ? (
                             <>
-                                <h2 className="text-3xl font-bold text-gray-900 mb-4">¡Qué pena, ibas bastante bien!</h2>
-                                <p className="text-xl text-gray-700 mb-6">
-                                    Te quedaste con: <span className="font-extrabold text-purple-600">0€</span>
+                                <h2 className="titulo_modal_derrota">¡Qué pena, ibas bastante bien!</h2>
+                                <p className="texto_modal_derrota">
+                                    Te quedaste con: <span className="dinero_derrota">0€</span>
                                 </p>
 
                                 <button
                                     onClick={reiniciarJuego}
-                                    className="bg-purple-600 text-white py-3 px-6 rounded-lg font-bold text-lg hover:bg-purple-700 transition-colors"
+                                    className="boton_volver_jugar"
                                 >
                                     Volver a Jugar
                                 </button>
@@ -302,17 +302,17 @@ const Juego = ({musicaFondoRef, stopMusic}) => {
                                 <img 
                                     src="/imgs/confetti-40.gif" 
                                     alt="Confeti de celebración" 
-                                    className="absolute inset-0 w-full h-full object-cover z-0 pointer-events-none"
+                                    className="estilo_confeti"
                                     />
 
-                                <div className="relative z-10">
-                                    <h2 className="text-3xl font-bold text-gray-900 mb-4 ">¡Enhorabuena! Tu inteligencia te hizo amasar una gran riqueza. </h2>
-                                    <p className="text-xl text-gray-700 mb-6">
-                                        Conseguiste ganar: <span className="font-extrabold text-purple-600">{dineroAcumulado.toLocaleString()}€</span>
+                                <div className="posicion_modal_victoria">
+                                    <h2 className="titulo_modal_victoria ">¡Enhorabuena! Tu inteligencia te hizo amasar una gran riqueza. </h2>
+                                    <p className="texto_modal_victoria">
+                                        Conseguiste ganar: <span className="dinero_victoria">{dineroAcumulado.toLocaleString()}€</span>
                                     </p>
                                     <button
                                         onClick={reiniciarJuego}
-                                        className="bg-purple-600 text-white py-3 px-6 rounded-lg font-bold text-lg hover:bg-purple-700 transition-colors"
+                                        className="boton_volver_jugar"
                                     >
                                         Volver a Jugar
                                     </button>
