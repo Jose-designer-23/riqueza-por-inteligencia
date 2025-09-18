@@ -83,7 +83,7 @@
 }
 
 .fondo_pregunta{
-  @apply  bg-[#f1f0dc] backdrop-blur-md rounded-xl p-8 shadow-xl;
+  @apply  bg-[#f1f0dc] backdrop-blur-md rounded-xl p-4 sm:p-8 shadow-xl;
 }
 
 .texto_titulo{
@@ -95,7 +95,7 @@
 }
 
 .texto_pregunta{
-  @apply font-bold text-lg;
+  @apply font-bold sm:text-lg;
 }
 
 .espacio_pregunta{
@@ -109,7 +109,7 @@
 }
 
 .diseño_botones{
-  @apply w-full sm:w-40 py-4 text-center rounded-lg  transition-colors duration-300;
+  @apply w-70 sm:w-40 py-4 text-center rounded-lg  transition-colors duration-300;
 }
 
 button {

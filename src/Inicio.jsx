@@ -21,10 +21,10 @@ const Inicio = ({playMusic}) => {
         <div className="estructura_inicio">
           <h1 className="titulo_inicio">Riqueza por Inteligencia</h1>
           <p className="estructura_argumento text-md"><b className="negrita">¿Serás capaz de llegar a la pregunta 15 y llevarte un millón de euros?</b>
-            <span className="espacio_pantalla_pequeña"></span>
-            <span className="espacio_pantalla_grande"></span>
+            <span className="block"></span>
+            <span className="sm:block"></span>
              El juego consta de 15 preguntas, cada vez que aciertes pasas a la siguiente
-            <span className="espacio_pantalla_grande"></span>
+            <span className="sm:block"></span>
              pregunta, si fallas se termina el juego y perderás todo el dinero acumulado. </p>
 
             <p className="titulo_comodines_inicio">Comodines: </p>

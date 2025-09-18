@@ -253,7 +253,7 @@ const Juego = ({musicaFondoRef, stopMusic}) => {
                 <div className="estructura_pregunta fondo_pregunta">
                     <h1 className="espacio_pregunta texto_titulo">Riqueza por Inteligencia</h1>
                     <p className="texto_numero_pregunta">Pregunta {preguntaActual + 1}:</p>
-                    <p className="espacio_pregunta texto_pregunta">{pregunta.pregunta}</p>
+                    <p className="espacio_pregunta texto_pregunta text_md">{pregunta.pregunta}</p>
                     <div className="estructura_botones">
                         {pregunta.respuesta.map((respuesta, index) => (
                             <button
