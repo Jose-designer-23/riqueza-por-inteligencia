@@ -47,7 +47,7 @@ const Inicio = ({playMusic}) => {
 
         </div>
 
-
+    {/* Se muestra el modal de la categoría antes de empezar a jugar, para elegir el tema del que quieras que sean las preguntas */}
       {mostrarModal && (
                 <div className="caja_modal_categoria bg-opacity-80">
                     <div className="estructura_modal_categoria">

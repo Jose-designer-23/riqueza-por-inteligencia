@@ -49,6 +49,8 @@ const Juego = ({musicaFondoRef, stopMusic}) => {
 
     const categoria = location.state?.categoria || 'entretenimiento';
 
+    //Este useEffect comprueba si la musica de fondo existe y si esta sonando
+
     useEffect(() => {
         musicaAciertoRef.current = new Audio("/sounds/acierto.mp3");
         musicaFalloRef.current = new Audio("/sounds/fallo.mp3");
@@ -81,7 +83,7 @@ const Juego = ({musicaFondoRef, stopMusic}) => {
     ];
 
 
-    //Usamos useEffect al inicio para barajar las preguntas
+    //Usamos este useEffect al seleccionar una categoria de las existentes, si existe la categoria, se barajan las preguntas. Si no existe, el usuario vuelve al inicio.
    useEffect(() => {
         if (preguntas[categoria]) {
             setPreguntasBarajadas(mezclarPreguntas(preguntas[categoria]));
@@ -101,7 +103,8 @@ const Juego = ({musicaFondoRef, stopMusic}) => {
     const respuestaPulsada = (correcta, index) => {
 
         setRespuestaSeleccionada(index);
-
+        // Si la respuesta es correcta, se reproducirá el efecto de sonido de acierto. 
+        // Si la respuesta es incorrecta, se parará la música de fondo y se reproducirá el efecto de sonido de fallo.
          if (correcta) {
           musicaAciertoRef.current.currentTime = 0;
           musicaAciertoRef.current.play();
@@ -112,20 +115,25 @@ const Juego = ({musicaFondoRef, stopMusic}) => {
             setMusicaSonando(false);
         }
 
+        // Esperamos 1 segundo antes de mostrar la siguiente pregunta o el modal de fin de juego.
         setTimeout(() => {
             const siguientePregunta = preguntaActual + 1;
             if (correcta) {
                 // Si la respuesta es correcta, actualizamos el dinero al valor del siguiente premio.
-                // Usamos "siguientePregunta - 1" para obtener el índice del premio recién ganado.
+                // Uso "siguientePregunta - 1" para obtener el índice del premio recién ganado.
                 const nuevoDinero = premios[siguientePregunta - 1];
                 setDineroAcumulado(nuevoDinero);
 
+                // Si no es la última pregunta, avanzamos a la siguiente.
+                //La respuesta seleccionada se reinicia a null para que puedas volver a sellecionar una respuesta.
+                //Las respuestas deshabilitadas se reinician a un array vacío para que todas las respuestas estén habilitadas.
                 if (siguientePregunta < preguntasBarajadas.length) {
                     setPreguntaActual(siguientePregunta);
                     setRespuestaSeleccionada(null);
                     setRespuestasDeshabilitadas([]);
                 } else {
-                    // Si es la última pregunta y aciertas, mostramos el modal de haber ganado la partida.
+                    // Si es la última pregunta y aciertas, se muestra el modal de haber ganado la partida, con la música de celebración.
+                    // La música de fondo se pausa y la música de celebración se repite en bucle hasta que salgas del modal.
                     celebracionRef.current.play();
                     celebracionRef.current.loop = true;
                     if (musicaFondoRef.current) {
@@ -143,6 +151,7 @@ const Juego = ({musicaFondoRef, stopMusic}) => {
         }, 1000);
     };
 
+    // Función para pausar o reproducir la música de fondo.
     const toggleMusica = () => {
         if (musicaFondoRef.current) {
             if (musicaSonando) {
@@ -157,15 +166,18 @@ const Juego = ({musicaFondoRef, stopMusic}) => {
         }
     };
 
-
+    // Funciones para usar los comodines
+    // Ambos comodines solo se pueden usar una vez por partida y no se pueden usar si ya has seleccionado una respuesta.
     const usarComodin5050 = () => {
         if (comodin5050Usado || respuestaSeleccionada !== null) return;
         setComodin5050Usado(true);
 
+        //Recorrerá todo el array de la pregunta actual, buscará las respuestas incorrectas y creara un array nuevo con los índices de las respuestas incorrectas.
         const respuestasIncorrectas = pregunta.respuesta
             .map((resp, index) => (resp.correcta ? null : index))
             .filter(index => index !== null);
 
+        //Escogerá de manera aleatoria las dos respuestas incorrectas que van a ser deshabilitadas.
         const aDeshabilitar = mezclarPreguntas(respuestasIncorrectas).slice(0, 2);
         setRespuestasDeshabilitadas(aDeshabilitar);
     };
@@ -174,16 +186,19 @@ const Juego = ({musicaFondoRef, stopMusic}) => {
         if (comodinAleatorioUsado || respuestaSeleccionada !== null) return;
         setComodinAleatorioUsado(true);
 
+        //Recorrerá todo el array de la pregunta actual, buscará las respuestas incorrectas y creara un array nuevo con los índices de las respuestas incorrectas.
         const respuestasIncorrectas = pregunta.respuesta
             .map((resp, index) => (resp.correcta ? null : index))
             .filter(index => index !== null);
         
+        //Escogerá de manera aleatoria entre 1 y 3 respuestas incorrectas que van a ser deshabilitadas.
         const numeroAleatorio = Math.floor(Math.random() * 3) + 1; // 1, 2 o 3
         const aDeshabilitar = mezclarPreguntas(respuestasIncorrectas).slice(0, numeroAleatorio);
         setRespuestasDeshabilitadas(aDeshabilitar);
     };
 
-    // Función para reiniciar el juego
+    // Con esta función se reinicia el juego a su estado inicial y las preguntas vuelven a barajarse.
+    // Si vuelves al inicio por haber ganado o perdido, la música de fondo se para hasta que comiences la partida de nuevo.
     const reiniciarJuego = () => {
         setPreguntaActual(0);
         setRespuestaSeleccionada(null);
@@ -259,6 +274,7 @@ const Juego = ({musicaFondoRef, stopMusic}) => {
                             <button
                                 key={index}
                                 onClick={() => respuestaPulsada(respuesta.correcta, index)}
+                                // Si la pregunta es acertada, el boton se volverá verde con letras blancas, si la pregunta es incorrecta, se volverá rojo con letras blancas.
                                 className={
                                     `diseño_botones
                                     ${respuestaSeleccionada === index
@@ -278,7 +294,7 @@ const Juego = ({musicaFondoRef, stopMusic}) => {
 
             </div>
             
-
+            {/* Se muestra el modal si ganas o pierdes la partida. */}
             {mostrarModal && (
                 <div className="caja_modal bg-opacity-80">
                     <div className="estructura_modal">
